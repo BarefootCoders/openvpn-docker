@@ -1,0 +1,17 @@
+<LDAP>
+  # LDAP server URL
+  URL             ldap://10.0.73.124
+  BindDN          CN=Administrator,CN=Users,DC=directory,DC=blindcut,DC=barefootcoders-ops,DC=com
+  # Bind Password
+  Password        foobarbaz123!
+
+  # Network timeout (in seconds)
+  Timeout         15
+</LDAP>
+
+<Authorization>
+  # Base DN
+  BaseDN          "CN=Users,DC=directory,DC=blindcut,DC=barefoot-ops,DC=com"
+  # Require Group Membership
+  RequireGroup    false
+</Authorization>
