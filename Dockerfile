@@ -1,17 +1,15 @@
 # Smallest base image
-FROM alpine:3.5
+FROM debian:jessie
 
 MAINTAINER John Felten<john.felten@gmail.com>
 
 ADD VERSION .
 
+RUN echo "nameserver 8.8.8.8\nnameserver 8.8.4.4" >> /etc/resolv.conf
+
 # Install needed packages
-RUN echo "http://dl-4.alpinelinux.org/alpine/edge/community/" >> /etc/apk/repositories
-RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories
-RUN apk update
-RUN apk add openssl easy-rsa openvpn iptables bash dnsmasq
-RUN apk add openvpn-auth-ldap
-RUN rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/*
+RUN apt-get -y -qq update
+RUN apt-get install -y -qq openssl easy-rsa openvpn iptables bash dnsmasq openvpn-auth-ldap
 
 # Configure tun
 RUN mkdir -p /dev/net && \
